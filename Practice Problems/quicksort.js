@@ -29,6 +29,7 @@ function pivoter(arr, start=0, end=arr.length+1) {
 // pivoter([9,4,8,2,1,5,7,6,3]);
 
 function quickSort(arr, left = 0, right = arr.length-1) {
+  console.log(left, right);
   if (left < right) {
     
     let pivotIndex = pivoter(arr,left,right); //3
