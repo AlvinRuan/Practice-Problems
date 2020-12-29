@@ -1,3 +1,5 @@
+//Great for working with Integer Sorting
+
 function getDigit(num,place) {
   return Math.floor(num / (Math.pow(10,(place)))% 10);
 }
