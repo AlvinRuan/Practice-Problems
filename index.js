@@ -28,16 +28,22 @@ function mostDigits(array) {
 function radixSort(array) {
   
   let maxDigits = mostDigits(array);
-  let counter = 0;
-  let finalArray = [];
-
-  for (var i = 0; i < maxDigits; i++) {
+  
+  for (var a = 0; a < maxDigits; a++) {
     let digitBuckets = Array.from({length: 10}, () => []);
     for (var j = 0; j < array.length; j++) {
-      if (getDigit(array[i],))
+      digitBuckets[getDigit(array[j],a)].push(array[j]);
     }
+    console.log(digitBuckets);
+    array = [].concat(...digitBuckets);
+    console.log(array);
   }
 }
 
 
 radixSort([4234,234,13242,1,234,67,3452,876,32452452,56546,4343,7676]);
+
+//Time complexity 
+// Best and Worst are O(k*n)
+// n = length of array
+// k = the number of digits(average)

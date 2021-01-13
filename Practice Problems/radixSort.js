@@ -3,7 +3,6 @@
 function getDigit(num,place) {
   return Math.floor(num / (Math.pow(10,(place)))% 10);
 }
-
 // getDigit(123,0);
 
 function digitCount(num) {
@@ -26,6 +25,22 @@ function mostDigits(array) {
     }
   }
   return most;
+  }
+
+function radixSort(array) {
+  
+  let maxDigits = mostDigits(array);
+  
+  for (var a = 0; a < maxDigits; a++) {
+    let digitBuckets = Array.from({length: 10}, () => []);
+    for (var j = 0; j < array.length; j++) {
+      digitBuckets[getDigit(array[j],a)].push(array[j]);
+    }
+    console.log(digitBuckets);
+    array = [].concat(...digitBuckets);
+    console.log(array);
+  }
 }
 
-mostDigits([123413,232,4123431,242]);
+
+radixSort([4234,234,13242,1,234,67,3452,876,32452452,56546,4343,7676]);
