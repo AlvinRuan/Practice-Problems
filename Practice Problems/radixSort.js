@@ -38,9 +38,13 @@ function radixSort(array) {
     }
     console.log(digitBuckets);
     array = [].concat(...digitBuckets);
-    console.log(array);
+//Time complexity 
+// Best and Worst are O(k*n)
+// n = length of array
+// k = the number of digits(average)    console.log(array);
   }
 }
 
 
 radixSort([4234,234,13242,1,234,67,3452,876,32452452,56546,4343,7676]);
+

@@ -1,0 +1,17 @@
+class Student {
+  constructor(firstName, lastName, year) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.grade = year;
+  }
+
+  fullName() {
+    return "The full name of the student is ${this.firstName} ${this.lastName}, and he/she is in grade ${this.grade}.";
+  }
+
+
+}
+
+let firstStudent = new Student("Alvin", "Ruan");
+let secondStudent = new Student("Alexis","Todaro");
+
