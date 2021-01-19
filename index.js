@@ -1,41 +1,40 @@
-//Time complexity 
-// Best and Worst are O(k*n)
-// n = length of array
-// k = the number of digits(average)
+// Linked List is just a connection of nodes
+//
+//Stores a piece of data and reference to next node.
 
-//Radix Sort
+// Nodes
+// piece of data - val
+// refernce to next node 
 
-// helper function to get the Digits
+class Node {
+  constructor(val) {
+    this.value = val;
+    this.next = null;
+  }
+}
 
-// function getDigits(num) {
-//   let digits = 0;
-
-//   while (num > 1) {
-//     num = num/10;
-//     digits++;
-//   }
-//   console.log(digits);
-//   return digits;
-// }
-
-// getDigits(4234);
-
-// helper function to get the most Digits
-
-// function getMostDigit(array) {
-//   let most = 0;
-//   for (var i = 0; i< array.length; i++) {
-//     if (array[i] > array[i+1]) {
-      
-//     }
-//   }
-// }
-
-// helper function to get the the Integer
+let first = new Node(13);
+first.next = new Node(14);
 
 
-// final put together
+class SLL{
+  constructor() {
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+  }
 
+  push(val) {
+      let newNode = new Node(val);
+    if (this.length === 0) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.tail.next = newNode;
+      this.tail = newNode;
+    }
+    this.length ++;
+    return this;
+  }
 
-
-// radixSort([4234,234,13242,1,234,67,3452,876,32452452,56546,4343,7676]);
+}
