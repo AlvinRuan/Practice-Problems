@@ -8,16 +8,13 @@
 
 class Node {
   constructor(val) {
-    this.value = val;
+    this.val = val;
     this.next = null;
   }
 }
 
-let first = new Node(13);
-first.next = new Node(14);
 
-
-class SLL{
+class SLL {
   constructor() {
     this.head = null;
     this.tail = null;
@@ -36,5 +33,4 @@ class SLL{
     this.length ++;
     return this;
   }
-
 }
