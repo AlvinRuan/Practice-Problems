@@ -67,6 +67,34 @@ class SLL {
     }
     return removedNode;
   }
+
+  unshift(val) {
+    let newNode = new Node(val);
+    if(!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+    
+    newNode.next = this.head;
+    this.head = newNode;
+    
+    }
+    this.length += 1;
+    return this;
+  }
+
+  get(index) {
+    if (index < 0 || index > this.length) {
+      return undefined;
+    }
+    let currentIndex = 0;
+    let currentNode = this.head;
+    while(currentIndex < (index - 1)) {
+      currentNode = currentNode.next;
+      currentIndex += 1;
+    }
+    return currentNode;
+  }
 }
 
 let alvin = new SLL;
