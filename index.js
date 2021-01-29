@@ -22,7 +22,7 @@ class SLL {
     this.length = 0;
   }
 
-  push(val) {
+  push(val) { // adding to the end of the list
       let newNode = new Node(val);
       if (this.length === 0) {
       this.head = newNode;
@@ -35,7 +35,7 @@ class SLL {
     return this;
   }
 
-  pop() {
+  pop() { // removing the last node
     if (!this.head) {
       return undefined;
     }
@@ -55,7 +55,7 @@ class SLL {
     return finalTail;
   }
 
-  shift() {
+  shift() { //Removing first item in the linked list
     if(!this.head) {
       return undefined;
     }
@@ -68,7 +68,7 @@ class SLL {
     return removedNode;
   }
 
-  unshift(val) {
+  unshift(val) { // adding a new node in the front of the list
     let newNode = new Node(val);
     if(!this.head) {
       this.head = newNode;
@@ -84,16 +84,72 @@ class SLL {
   }
 
   get(index) {
-    if (index < 0 || index > this.length) {
+    if (index < 0 || index >= this.length) {
       return undefined;
     }
     let currentIndex = 0;
     let currentNode = this.head;
-    while(currentIndex < (index - 1)) {
+    while(currentIndex < index) {
       currentNode = currentNode.next;
       currentIndex += 1;
     }
     return currentNode;
+  }
+
+  set(index, value) {
+    if (this.get(index)) {
+      this.get(index).val = value;  
+      return true;
+    }
+      return false;
+  }
+
+  insert(index, value) {
+    if(index >= this.length || index < 0) {
+      return false;
+    }
+
+    if (index === 0) {
+      return !!this.unshift(value);
+    }
+
+    if (index === this.length) {
+      return !!this.push(value);
+    }
+
+    if (this.get(index)) {
+      let priorNode = this.get(index-1);
+      let afterNode = priorNode.next;
+      let newNode = new Node(value);
+      priorNode.next = newNode;
+      newNode.next = afterNode;
+      this.length += 1;
+      return true;
+    }
+    return false
+  }
+
+  remove(index) {   //remove a node from given index
+    if(index >= this.length || index < 0) {
+      return false;
+    }
+
+    if (index === 0) {
+      return !!this.shift();
+    }
+
+    if (index === this.length) {
+      return !!this.pop();
+    }
+
+    if (this.get(index)) {
+      let priorNode = this.get(index-1);
+      let removedNode = priorNode.next;
+      priorNode.next = removedNode.next;
+      this.length -=1;
+      return removedNode;
+    }
+    return false
   }
 }
 
