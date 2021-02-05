@@ -151,10 +151,32 @@ class SLL {
     }
     return false
   }
+
+  reverse() {
+    let node = this.head;
+    this.head = this.tail;
+    this.tail = node;
+
+    let next = null;
+    let prev = null;
+
+    // A B C
+
+    for (var i = 0; i< this.length; i++) {
+      next = node.next;
+      node.next = prev;
+      prev = node;
+      node = next;
+      }
+      return this;
+    }
+    
+  
 }
 
 let alvin = new SLL;
 alvin.push("Hi");
 alvin.push("There");
 alvin.push("Teletubbies");
+alvin.push("End");
 
