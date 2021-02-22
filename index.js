@@ -1,182 +1,67 @@
-// Linked List is just a connection of nodes
-//
-//Stores a piece of data and reference to next node.
-
-// Nodes
-// piece of data - val
-// refernce to next node 
-
+// Doubly Linked List
 
 class Node {
   constructor(val) {
     this.val = val;
     this.next = null;
+    this.prev = null;
   }
 }
 
-
-class SLL {
+class DLL {
   constructor() {
     this.head = null;
     this.tail = null;
     this.length = 0;
   }
 
-  push(val) { // adding to the end of the list
-      let newNode = new Node(val);
-      if (this.length === 0) {
-      this.head = newNode;
-      this.tail = newNode;
+  push(val) {
+    let pushNode = new Node(val);
+    if (this.length === 0) {
+      this.head = pushNode;
+      this.tail = pushNode;
     } else {
-      this.tail.next = newNode;
-      this.tail = newNode;
+      pushNode.prev = this.tail;
+      this.tail.next = pushNode;
+      this.tail = pushNode;
     }
-    this.length ++;
+    this.length += 1;    
     return this;
   }
 
-  pop() { // removing the last node
-    if (!this.head) {
-      return undefined;
-    }
-    let finalTail = this.head;
-    let newTail = this.head;
-    while(finalTail.next) {
-      newTail = finalTail;
-      finalTail = finalTail.next;
-    }
-    this.tail = newTail;
-    this.tail.next = null;
-    this.length -= 1;
+  pop() {
+    let removedNode = this.tail;
     if (this.length === 0) {
+      return undefined;
+    } else if (this.length === 1) {
       this.head = null;
       this.tail = null;
+    } else {
+      this.tail.prev.next = null;
+      this.tail = this.tail.prev;
+      removedNode.prev = null;
     }
-    return finalTail;
-  }
-
-  shift() { //Removing first item in the linked list
-    if(!this.head) {
-      return undefined;
-    }
-    let removedNode = this.head;
-    this.head = this.head.next;
     this.length -= 1;
-    if(this.length === 0) {
-      this.tail = null;
-    }
     return removedNode;
   }
 
-  unshift(val) { // adding a new node in the front of the list
-    let newNode = new Node(val);
-    if(!this.head) {
-      this.head = newNode;
-      this.tail = newNode;
+  shift() {
+    if (!this.head) return undefined;
+    if (this.lenght === 1) {
+      this.head = null;
+      this.tail = null;
     } else {
-    
-    newNode.next = this.head;
-    this.head = newNode;
-    
+      let removedHead = this.head;
+      this.head = this.head.next;
+      this.head.prev = null;
+      removedHead.next = null;
     }
-    this.length += 1;
-    return this;
-  }
-
-  get(index) {
-    if (index < 0 || index >= this.length) {
-      return undefined;
-    }
-    let currentIndex = 0;
-    let currentNode = this.head;
-    while(currentIndex < index) {
-      currentNode = currentNode.next;
-      currentIndex += 1;
-    }
-    return currentNode;
-  }
-
-  set(index, value) {
-    if (this.get(index)) {
-      this.get(index).val = value;  
-      return true;
-    }
-      return false;
-  }
-
-  insert(index, value) {
-    if(index >= this.length || index < 0) {
-      return false;
-    }
-
-    if (index === 0) {
-      return !!this.unshift(value);
-    }
-
-    if (index === this.length) {
-      return !!this.push(value);
-    }
-
-    if (this.get(index)) {
-      let priorNode = this.get(index-1);
-      let afterNode = priorNode.next;
-      let newNode = new Node(value);
-      priorNode.next = newNode;
-      newNode.next = afterNode;
-      this.length += 1;
-      return true;
-    }
-    return false
-  }
-
-  remove(index) {   //remove a node from given index
-    if(index >= this.length || index < 0) {
-      return false;
-    }
-
-    if (index === 0) {
-      return !!this.shift();
-    }
-
-    if (index === this.length) {
-      return !!this.pop();
-    }
-
-    if (this.get(index)) {
-      let priorNode = this.get(index-1);
-      let removedNode = priorNode.next;
-      priorNode.next = removedNode.next;
-      this.length -=1;
-      return removedNode;
-    }
-    return false
-  }
-
-  reverse() {
-    let node = this.head;
-    this.head = this.tail;
-    this.tail = node;
-
-    let next = null;
-    let prev = null;
-
-    // A B C
-
-    for (var i = 0; i< this.length; i++) {
-      next = node.next;
-      node.next = prev;
-      prev = node;
-      node = next;
-      }
-      return this;
-    }
-    
-  
+    this.length -= 1;
+    return removedHead;
+  } 
 }
 
-let alvin = new SLL;
-alvin.push("Hi");
-alvin.push("There");
-alvin.push("Teletubbies");
-alvin.push("End");
-
+let alvin = new DLL();
+alvin.push(1);
+alvin.push(2);
+alvin.push(3);
