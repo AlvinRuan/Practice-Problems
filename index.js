@@ -1,55 +1,50 @@
+// BINARY SEARCH TREES
 
+class BST { // you really only need a root for a Binary search tree
+  constructor() {
+    this.root = null;
+  }
 
-// D =>  C =>  B =>  A
+  addNode(val) {
+      let newNode = new Node(val);
+        
+       if (this.root === null) {
+           this.root = newNode;
+           return this;
+       } 
+
+      let current = this.root;
+      while(current) {
+          if (val < current.val) {
+              if (current.left === null) {
+                  current.left = newNode;
+                  return this;
+              } else {
+                current = current.left;
+             }
+          } else {
+              if (current.right === null) {
+                  current.right = newNode;
+                  return this;
+              } else {
+              current = current.right;
+              }
+          }
+      }
+  }
+}
 
 class Node {
   constructor(val) {
     this.val = val;
-    this.next = null;
+    this.right = null;
+    this.left = null;
   }
 }
 
-class Queue {
-  constructor() {
-    this.first = null;
-    this.last = null;
-    this.size = 0;
-  }
+let alvin = new BST();
+alvin.root = new Node (10);
+alvin.root.left = new Node(7);
+alvin.root.right = new Node(15);
+alvin.root.left.right = new Node(9);
 
-  enqueue(val) {
-
-    let newNode = new Node(val);
-    if (!this.size) {
-      this.first = newNode;
-      this.last = newNode;
-    } else {
-      this.last.next = newNode;
-      this.last = newNode;
-    }
-    this.size +=1;
-    return this;
-  }
-
-  dequeue() {
-    if (!this.size) {
-      return null;
-    }
-    let removedNode = this.first;
-
-    if (this.size === 1) {
-      this.last = null;
-    }
-    this.first = removedNode.next;
-    removedNode.next = null;
-    this.size -=1;
-    return removedNode;
-    
-  }
-
-}
-
-let alvin = new Queue();
-alvin.enqueue("A");
-alvin.enqueue("B");
-alvin.enqueue("C");
-alvin.enqueue("D");
