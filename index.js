@@ -32,6 +32,36 @@ class BST { // you really only need a root for a Binary search tree
           }
       }
   }
+
+  find(val) {
+    if (!this.root) return false;
+
+    if (this.root.val === val) {
+      return true;
+    }
+
+    let current = this.root;
+
+    while(!!current) {
+      if (val < current.val) {
+        if (current.left.val === val) {
+          return true;
+        } else {
+          if (current.left.val === null) return false;
+          current = current.left
+        }
+      } else {
+        if (current.right.val === val) {
+          return true;
+        } else {
+          if (current.right.val === null) return false;
+        current = current.right;
+        }
+      }
+    }
+
+    return false;
+  }
 }
 
 class Node {
