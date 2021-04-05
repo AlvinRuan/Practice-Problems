@@ -6,17 +6,6 @@
 // create a quene
 // place root node in the quene
 // loop as long as there is something in the quene
-
-//  Depth First Search
-
-class Node {
-    constructor(val) {
-      this.val = val;
-      this.right = null;
-      this.left = null;
-    }
-  }
-
 class BST { // you really only need a root for a Binary search tree
     constructor() {
       this.root = null;
@@ -73,23 +62,31 @@ class BST { // you really only need a root for a Binary search tree
       }
       
     }
-
-    DFS() {
-        var data = [];
-        var current = this.root;
-
-        function traverse(node) {
-            data.push(node.val);
-            if (current.left) traverse(node.left);
-            if (current.right) traverse(node.right);
-        }
-        traverse(current);
-        return data;
+    BFS() {
+        var node = this.root, 
+          data = [],
+          quene = []; 
+        quene.push(this.root);
+        while (quene.length) {
+          node = quene.shift()
+          data.push(node.val);
+      
+          if(node.left) quene.push(node.left.val);
+          if(node.right) quene.push(node.right.val);
     }
-
-    
+    }
 
   }
   
+  class Node {
+    constructor(val) {
+      this.val = val;
+      this.right = null;
+      this.left = null;
+    }
+  }
+
+
+//  Depth First Search
 
 
